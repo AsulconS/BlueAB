@@ -1,1 +1,5 @@
-./main
+# Ignoring main
+main
+
+# Ignoring Temp Shaders
+Shaders/orangeShader.*
