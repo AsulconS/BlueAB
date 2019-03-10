@@ -1,5 +1,5 @@
-#include "System.h"
-#include "Graphics.h"
+#include "System.hpp"
+#include "Graphics.hpp"
 
 // settings
 const unsigned int SCR_WIDTH  = 800;

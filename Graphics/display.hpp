@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "glManager.h"
+#include "glManager.hpp"
 
 class Display
 {

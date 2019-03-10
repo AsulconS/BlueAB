@@ -1,4 +1,4 @@
-#include "glManager.h"
+#include "glManager.hpp"
 
 bool GLManager::gladInitialized = false;
 bool GLManager::glfwInitialized = false;
