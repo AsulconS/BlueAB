@@ -82,18 +82,54 @@ void Display::processInput(float& value)
     {
         glfwSetWindowShouldClose(window, true);
     }
-    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
         value += 0.0001f;
         if(value >= 1.0f)
             value = 1.0f;
     }
-    if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
     {
         value -= 0.0001f;
         if(value <= 0.0f)
             value = 0.0f;
     }
+}
+
+void Display::processInput(glm::vec3& cameraPos, glm::vec3& cameraDir, glm::vec3& cameraUp, float& yaw, float cameraSpeed, float deltaTime)
+{
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+    }
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        cameraPos += deltaTime * cameraSpeed * cameraDir;
+    }
+    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        cameraPos -= deltaTime * cameraSpeed * cameraDir;
+    }
+    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        cameraPos -= deltaTime * cameraSpeed * glm::normalize(glm::cross(cameraDir, cameraUp));
+    }
+    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        cameraPos += deltaTime * cameraSpeed * glm::normalize(glm::cross(cameraDir, cameraUp));
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        yaw += deltaTime * cameraSpeed / 4.0f;
+    }
+    if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        yaw -= deltaTime * cameraSpeed / 4.0f;
+    }
+    cameraDir.x = -sin(yaw);
+    cameraDir.z = -cos(yaw);
+    std::cout << "x: " << cameraDir.x << " | z: " << cameraDir.z << std::endl;
 }
 
 // ---------------------------------------------------------------------------------------------------------

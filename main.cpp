@@ -192,6 +192,13 @@ int main()
     shader.use();
     shader.setInt("texture1", 0);
     shader.setInt("texture2", 1);
+
+    // camera
+    // ------
+    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+    glm::vec3 cameraDir = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 cameraUp  = glm::vec3(0.0f, 1.0f, 0.0f);
+    float yaw = glm::radians(0.0f);
     
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // Draw in wireframe polygons
     // render loop
@@ -200,7 +207,7 @@ int main()
     {
         // input
         // -----
-        display.processInput();
+        display.processInput(cameraPos, cameraDir, cameraUp, yaw, 4.0f, Time::getDeltaTime());
 
         // render
         // ------
@@ -217,7 +224,7 @@ int main()
         // view matrix
         // -----------
         glm::mat4 view = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -9.0f));
+        view = glm::lookAt(cameraPos, cameraPos + cameraDir, cameraUp);
         shader.setMat4("view", GL_FALSE, view);
 
         // projection matrix

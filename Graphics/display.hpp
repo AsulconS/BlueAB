@@ -4,6 +4,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "glManager.hpp"
 
 class Display
@@ -20,6 +24,7 @@ public:
 
     void processInput();
     void processInput(float& value);
+    void processInput(glm::vec3& cameraPos, glm::vec3& cameraFront, glm::vec3& cameraUp, float& yaw, float cameraSpeed, float deltaTime);
     void swapBuffers();
     bool active();
 };
